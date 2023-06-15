@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html >
+<head>
+ <title>Prediksi Harga Mobil Bekas</title>
+<style>
+body {
+ background-color: #E1E5EA
+}
+</style>
+</head>
+<center>
+ <body>
+</center>
+<style type="text/css">
+body {
+ margin: 0;
+ padding: 0;
+ font-family: sans-serif;
+ background: #E1E5EA ;
+ width: 100%;
+ height:100%;
+ font-size: 18px;
+ text-align:center;
+ letter-spacing:1.2px;
+}
+.login {
+ position: absolute;
+ top: 40%;
+ left: 50%;
+ margin: -150px 0 0 -150px;
+ width:400px;
+ height:400px;
+}
+input[type="text"] {
+ border: 0;
+ background: none;
+ display: block;
+ margin: 3px auto;
+ text-align: center;
+ border: 2px solid #020202;
+ padding: 14px 10px;
+ width: 200px;
+ outline: none;
+ color: #000000;
+ border-radius: 24px;
+ transition: 0.25s;
+}
+input[type="text"] {
+ width: 180px;
+ border-color: #384259;
+}
+select{
+ border: 0;
+ background: none;
+ display: block;
+ margin: 3px auto;
+ text-align: center;
+ border: 2px solid #384259;
+ padding: 14px 10px;
+ width: 200px;
+ outline: none;
+ color: #000000;
+ border-radius: 24px;
+ transition: 0.25s;
+}
+select{
+ width: 180px;
+ border-color: #3A4750;
+}
+button{
+ border: 0;
+ background: none;
+ display: block;
+ margin: 5px auto;
+ text-align: center;
+ border: 2px solid #3A4750;
+ padding: 14px 10px;
+ outline: none;
+ color: 000000;
+ border-radius: 24px;
+ transition: 0.25s;
+ cursor: pointer;
+}
+ 
+</style>
+<div class="login">
+ <h2> <font color="black"> Prediksi Harga Mobil Bekas </font>
+</h2>
+ <!-- Main Input For Receiving Query to our ML -->
+ <form action="{{ url_for('predict')}}" method="post">
+ <label for="Mobil"></label>
+ <select id="Mobil" name="Mobil">
+ <option value="0">Mobil</option>
+ <option value="1">BMW</option>
+ <option value="2">Daihatsu</option>
+ <option value="3">Honda</option>
+ <option value="4">Mazda</option>
+ <option value="5">Mercedes-Benz</option>
+ <option value="6">Mitsubishi</option>
+ <option value="7">Nissan</option>
+ <option value="8">Suzuki</option>
+ <option value="9">Toyota</option>
+ <option value="10">Wuling</option>
+ </select>
+ <br>
+ <label for="Jenis"></label>
+ <select id="Jenis" name="Jenis">
+ <option value="0">Jenis</option>
+ <option value="0">2</option>
+ <option value="1">3</option>
+ <option value="2">6</option>
+ <option value="3">86</option>
+ <option value="4">March</option>
+ <option value="5">218i</option>
+ <option value="6">320d</option>
+ <option value="7">320i</option>
+ <option value="8">323i</option>
+ <option value="9">325i</option>
+ <option value="10">328i</option>
+ <option value="11">330i</option>
+ <option value="12">335i</option>
+ <option value="13">428i</option>
+ <option value="14">430i</option>
+ <option value="15">520d</option>
+ <option value="16">520i </option>
+ <option value="17">523i</option>
+ <option value="18">528i</option>
+ <option value="19">530i</option>
+ <option value="20">535i</option>
+ <option value="21">730Ld</option>
+ <option value="22">730Li</option>
+ <option value="23">740li</option>
+ <option value="24">840i</option>
+ <option value="25">A200</option>
+ <option value="26">A45</option>
+ <option value="27">Accord</option>
+ <option value="28">Agya</option>
+ <option value="29">Almaz</option>
+ <option value="30">Alphard</option>
+ <option value="31">AMG</option>
+ <option value="32">APV</option>
+ <option value="33">Avanza</option>
+ <option value="34">Alya</option>
+ <option value="35">B170</option>
+ <option value="36">B180</option>
+ <option value="37">B200</option>
+ <option value="38">Baleno</option>
+ <option value="39">Bianter</option>
+ <option value="40">BR</option>
+ <option value="41">Brio</option>
+ <option value="42">C180</option>
+ <option value="43">C200</option>
+ <option value="44">C250</option>
+ <option value="45">C300</option>
+ <option value="46">Calya</option>
+ <option value="47">Camry</option>
+ <option value="48">Carry</option>
+ <option value="49">City</option>
+ <option value="50">Civic</option>
+ <option value="51">CL500</option>
+ <option value="52">CLA200</option>
+ <option value="53">CLS350</option>
+ <option value="54">CLS400</option>
+ <option value="55">CLS63</option>
+ <option value="56">Colt</option>
+ <option value="57">Confero</option>
+ <option value="58">Corolla</option>
+ <option value="59">Cortez</option>
+ <option value="60">Cruiser</option>
+ <option value="61">CR-V</option>
+ <option value="62">CX-3</option>
+ <option value="63">CX-5</option>
+ <option value="64">CX-7</option>
+ <option value="65">CX-8</option>
+ <option value="66">CX-9</option>
+ <option value="67">E200</option>
+ <option value="68">E230</option>
+ <option value="69">E250</option>
+ <option value="70">E280</option>
+ <option value="71">E300</option>
+ <option value="72">E350</option>
+ <option value="73">E400</option>
+ <option value="74">Eclipse</option>
+ <option value="75">Elgrand</option>
+ <option value="76">Elysion</option>
+ <option value="77">Ertiga</option>
+ <option value="78">Escudo</option>
+ <option value="79">Evalia</option>
+ <option value="80">Fortuner</option>
+ <option value="81">Freed</option>
+ <option value="82">Fuso</option>
+ <option value="83">G350</option>
+ <option value="84">G55</option>
+ <option value="85">G63</option>
+ <option value="86">Galant</option>
+ <option value="87">GLC200</option>
+ <option value="88">GLC250</option>
+ <option value="89">GLE250 </option>
+ <option value="90">GLE400</option>
+ <option value="91">GLE450</option>
+ <option value="92">GLS400</option>
+ <option value="93">GLS450</option>
+ <option value="94">GL350</option>
+ <option value="95">GL400</option>
+ <option value="96">GLA200</option>
+ <option value="97">GranAce</option>
+ <option value="98">Grand</option>
+ <option value="99">GLA45</option>
+ <option value="100">GLB200</option>
+ <option value="101">GT</option>
+ <option value="102">Harrier</option>
+ <option value="103">Hiace</option>
+ <option value="104">Hilux</option>
+ <option value="105">HR</option>
+ <option value="106">Ignis</option>
+ <option value="107">Jazz</option>
+ <option value="108">Jimny</option>
+ <option value="109">Juke</option>
+ <option value="110">Karimun</option>
+ <option value="111">Kijang</option>
+ <option value="112">Kuda</option>
+ <option value="113">Lancer</option>
+ <option value="114">Land</option>
+ <option value="115">Livina</option>
+ <option value="116">M2</option>
+ <option value="117">M3</option>
+ <option value="118">M4</option>
+ <option value="119">Mirage</option>
+ <option value="120">ML250</option>
+ <option value="121">ML300</option>
+ <option value="122">ML350</option>
+ <option value="123">ML400</option>
+ <option value="124">Mobilio</option>
+ <option value="125">MPV 1</option>
+ <option value="126">MPV 8</option>
+ <option value="127">Murano</option>
+ <option value="128">Navara</option>
+ <option value="129">Odyssey</option>
+ <option value="130">Outlander Sport</option>
+ <option value="131">Pajero</option>
+ <option value="132">Panamera</option>
+ <option value="133">R</option>
+ <option value="134">Raize</option>
+ <option value="135">Rocky</option>
+ <option value="136">Rush</option>
+ <option value="137">S300</option>
+ <option value="138">S350</option>
+ <option value="139">S400</option>
+ <option value="140">S450</option>
+ <option value="141">Santa</option>
+ <option value="142">Scirocco</option>
+ <option value="143">Seltos</option>
+ <option value="144">Sienta</option>
+ <option value="145">Sigra</option>
+ <option value="146">Sirion</option>
+ <option value="147">SLC43</option>
+ <option value="148">SLK200</option>
+ <option value="149">Splash</option>
+ <option value="150">Sprinter</option>
+ <option value="151">SX4</option>
+ <option value="152">Teana</option>
+ <option value="153">Terios</option>
+ <option value="154">Terra</option>
+ <option value="155">Triton </option>
+ <option value="156">V220</option>
+ <option value="157">V250</option>
+ <option value="158">Vellfire</option>
+ <option value="159">Veloz</option>
+ <option value="160">Vios</option>
+ <option value="161">Voxy</option>
+ <option value="162">X</option>
+ <option value="163">X1</option>
+ <option value="164">X3</option>
+ <option value="165">X4</option>
+ <option value="166">X5</option>
+ <option value="167">X6</option>
+ <option value="168">X7</option>
+ <option value="169">Xenia</option>
+ <option value="170">XL7</option>
+ <option value="171">Xpander</option>
+ <option value="172">Yaris</option>
+ <option value="173">YRV</option>
+ <option value="174">Z4</option>
+ </select>
+ <br>
+ <label for="Tipe"></label>
+ <select id="Tipe" name="Tipe">
+ <option value="0">Tipe</option>
+ <option value="1">1.0 D MPV</option>
+ <option value="2">1.0 D+ Hatchback</option>
+ <option value="3">1.0 G Hatchback</option>
+ <option value="4">1.0 G Wagon</option>
+ <option value="5">1.0 GL</option>
+ <option value="6">1.0 GL Wagon</option>
+ <option value="7">1.0 GR Sport</option>
+ <option value="8">1.0 GS Wagon</option>
+ <option value="9">1.0 GX</option>
+ <option value="10">1.0 M Hatchback</option>
+ <option value="11">1.0 M MPV</option>
+ <option value="12">1.0 R TC</option>
+ <option value="13">1.0 TRD Sportivo</option>
+ <option value="14">1.0 Wagon</option>
+ <option value="15">1.0 X Hatchback</option>
+ <option value="16">1.2 XS</option>
+ <option value="17">1.2 E Hatchback</option>
+ <option value="18">1.2 E Satya</option>
+ <option value="19">1.2 EXCEED Hatchback</option>
+ <option value="20">1.2 G Hatchback</option>
+ <option value="21">1.2 G MPV</option>
+ <option value="22">1.2 GL Hatchback</option>
+ <option value="23">1.2 GX Hatchback</option>
+ <option value="24">1.2 Hatchback</option>
+ <option value="25">1.2 Highline TSI</option>
+ <option value="26">1.2 R Deluxe</option>
+ <option value="27">1.2 R Hatchback</option>
+ <option value="28">1.2 R MPV</option>
+ <option value="29">1.2 RS Hatchback</option>
+ <option value="30">1.2 Satya E</option>
+ <option value="31">1.2 Satya S</option>
+ <option value="32">1.2 TRD Hatchback</option>
+ <option value="33">1.2 X Hatchback</option>
+ <option value="34">1.2 X MPV</option>
+ <option value="35">1.2 X Wagon</option>
+ <option value="36">1.2 XS Hatchback</option>
+ <option value="37">1.3 AC</option>
+ <option value="38">1.3 AMG Line Coupe</option>
+ <option value="39">1.3 AMG Line </option>
+ <option value="40">1.3 AMG Line SUV</option>
+ <option value="41">1.3 Deluxe Hatchback</option>
+ <option value="42">1.3 D </option>
+ <option value="43">1.3 D FMC </option>
+ <option value="44">1.3 E Hatchback</option>
+ <option value="45">1.3 E MPV</option>
+ <option value="46">1.3 G MPV</option>
+ <option value="47">1.3 Hatchback</option>
+ <option value="48">1.3 Progressive Line</option>
+ <option value="49">1.3 R MPV</option>
+ <option value="50">1.3 R SPORTY</option>
+ <option value="51">1.3 RS Hatchback</option>
+ <option value="52">1.3 S Hatchback</option>
+ <option value="53">1.3 Sport Hatchback</option>
+ <option value="54">1.3 STD</option>
+ <option value="55">1.3 Veloz MPV</option>
+ <option value="56">1.3 X DELUXE</option>
+ <option value="57">1.3 X STD</option>
+ <option value="58">1.3 X X</option>
+ <option value="59">1.4 Dreza MPV</option>
+ <option value="60">1.4 GL Hatchback</option>
+ <option value="61">1.4 GL MPV</option>
+ <option value="62">1.4 GX Elegant</option>
+ <option value="63">1.4 GX MPV</option>
+ <option value="64">1.4 Hatchback</option>
+ <option value="65">1.4 MPV</option>
+ <option value="66">1.5 ALPHA Wagon</option>
+ <option value="67">1.5 BETA Wagon</option>
+ <option value="68">1.5 Blind High</option>
+ <option value="69">1.5 Cross Over Hatchback</option>
+ <option value="70">1.5 CROSS Wagon</option>
+ <option value="71">1.5 CUSTOM SUV</option>
+ <option value="72">1.5 D</option>
+ <option value="73">1.5 E</option>
+ <option value="74">1.5 E Hatchback</option>
+ <option value="75">1.5 E MPV</option>
+ <option value="76">1.5 E Sedan</option>
+ <option value="77">1.5 E Wagon</option>
+ <option value="78">1.5 ES Sedan</option>
+ <option value="79">1.5 EXCEED Wagon</option>
+ <option value="80">1.5 FD Pick</option>
+ <option value="81">1.5 G MPV</option>
+ <option value="82">1.5 G Sedan</option>
+ <option value="83">1.5 G SUV</option>
+ <option value="84">1.5 GL Arena</option>
+ <option value="85">1.5 GL MPV</option>
+ <option value="86">1.5 GLS Wagon</option>
+ <option value="87">1.5 GX Arena</option>
+ <option value="88">1.5 GX MPV</option>>
+ <option value="89">1.5 Hatchback</option>
+ <option value="90">1.5 Highway</option>
+ <option value="91">1.5 HR</option>
+ <option value="92">1.5 i-DSI</option>
+ <option value="93">1.5 LT Lux</option>
+ <option value="94">1.5 Pick-up</option>
+ <option value="95">1.5 Prestige</option>
+ <option value="96">1.5 Q MPV</option>
+ <option value="97">1.5 Q TSS</option>
+ <option value="98">1.5 Q Wagon</option>
+ <option value="99">1.5 R Deluxe</option>
+ <option value="100">1.5 R Hatchback</option>
+ <option value="101">1.5 R SUV</option>
+ <option value="102">1.5 RS</option>
+ <option value="103">1.5 RS Hatchback</option>
+ <option value="104">1.5 RS MPV</option>
+ <option value="105">1.5 RS Pro</option>
+ <option value="106">1.5 RX Black</option>
+ <option value="107">1.5 RX Red</option>
+ <option value="108">1.5 RX SUV</option>
+ <option value="109">1.5 S</option>
+ <option value="110">1.5 S C</option>
+ <option value="111">1.5 S GR</option>
+ <option value="112">1.5 S Hatchback</option>
+ <option value="113">1.5 S L</option> 
+ <option value="114">1.5 S Lux</option>
+ <option value="115">1.5 S MPV</option>
+ <option value="116">1.5 S SUV</option>
+ <option value="117">1.5 S+ T</option>
+ <option value="118">1.5 SE </option>
+ <option value="119">1.5 Sedan</option>
+ <option value="120">1.5 Sport</option>
+ <option value="121">1.5 Sport MPV</option>
+ <option value="122">1.5 SPORT Wagon</option>
+ <option value="123">1.5 STD</option>
+ <option value="124">1.5 SUV</option>
+ <option value="125">1.5 SV</option>
+ <option value="126">1.5 TRD Sportivo</option>
+ <option value="127">1.5 Turbo L</option>
+ <option value="128">1.5 TX SUV</option>
+ <option value="129">1.5 Ultimate</option>
+ <option value="130">1.5 ULTIMATE Wagon</option>
+ <option value="131">1.5 V MPV</option>
+ <option value="132">1.5 VE Wagon</option>
+ <option value="133">1.5 Veloz MPV</option>
+ <option value="134">1.5 VL Wagon</option>
+ <option value="135">1.5 VTEC Sedan</option>
+ <option value="136">1.5 VTEC</option>
+ <option value="137">1.5 Wagon</option>
+ <option value="138">1.5 WD Pick</option>
+ <option value="139">1.5 X</option>
+ <option value="140">1.5 X Deluxe</option>
+ <option value="141">1.5 X SUV</option>
+ <option value="142">1.5 XV</option>
+ <option value="143">1.5 XV Highway</option>
+ <option value="144">1.6 AMG Coupe</option>
+ <option value="145">1.6 AMG Edition</option>
+ <option value="146">1.6 AMG Hatchback</option>
+ <option value="147">1.6 AMG SUV</option>
+ <option value="148">1.6 Sedan</option>
+ <option value="149">1.6 Sport Coupe</option>
+ <option value="150">1.6 Sport SUV</option>
+ <option value="151">1.6 Urban Hatchback</option>
+ <option value="152">1.6 Urban SUV</option>
+ <option value="153">1.7 B170</option>
+ <option value="154">1.7 B180</option>
+ <option value="155">1.8 AMG Coupe</option>
+ <option value="156">1.8 CGI Avantgarde</option>
+ <option value="157">1.8 CGI Convertible</option>
+ <option value="158">1.8 CGI Sedan</option>
+ <option value="159">1.8 Edition C</option>
+ <option value="160">1.8 Hybrid</option>
+ <option value="161">1.8 L Lux</option>
+ <option value="162">1.8 Prestige</option>
+ <option value="163">1.8 Sedan</option>
+ <option value="164">1.8 V</option>
+ <option value="165">1.8 V Sedan</option>
+ <option value="166">2.0 AMG Coupe</option>
+ <option value="167">2.0 AMG Hatchback</option>
+ <option value="168">2.0 AMG Line </option>
+ <option value="169">2.0 AMG Line Coupe</option>
+ <option value="170">2.0 AMG Line Sedan</option>
+ <option value="171">2.0 AMG Night</option>
+ <option value="172">2.0 AMG Sedan</option>
+ <option value="173">2.0 AMG SUV</option>
+ <option value="174">2.0 Avantgarde Sedan</option>
+ <option value="175">2.0 Cabriolet</option>
+ <option value="176">2.0 Classic Sedan</option>
+ <option value="177">2.0 Comfort Touring</option>
+ <option value="178">2.0 Convertible</option>
+ <option value="179">2.0 Coupe</option>
+ <option value="180">2.0 E</option>
+ <option value="181">2.0 Exclusive MATIC SUV</option>
+ <option value="182">2.0 Exclusive Sedan</option>
+ <option value="183">2.0 Exclusive SUV</option>
+ <option value="184">2.0 Exclusive Wagon</option>
+ <option value="185">2.0 G</option>
+ <option value="186">2.0 G Hatchback</option>
+ <option value="187">2.0 GLS</option>
+ <option value="188">2.0 Grand Touring Wagon</option>
+ <option value="189">2.0 Hatchback</option>
+ <option value="190">2.0 Highway Star</option>
+ <option value="191">2.0 i</option>
+ <option value="192">2.0 Limited Edition</option>
+ <option value="193">2.0 Luxury</option>
+ <option value="194">2.0 M Sport</option>
+ <option value="195">2.0 MPV</option>
+ <option value="196">2.0 Panoramic Autech</option>
+ <option value="197">2.0 Panoramic MPV</option>
+ <option value="198">2.0 PMPV</option>
+ <option value="199">2.0 PX</option>
+ <option value="200">2.0 Q</option>
+ <option value="201">2.0 Sedan</option>
+ <option value="202">2.0 SKYACTIV</option>
+ <option value="203">2.0 SKYACTIV A</option>
+ <option value="204">2.0 SKYACTIV-G Hatchback</option>
+ <option value="205">2.0 SPEED Hatchback</option>
+ <option value="206">2.0 Sport</option>
+ <option value="207">2.0 SUV</option>
+ <option value="208">2.0 Touring SUV</option>
+ <option value="209">2.0 Touring Wagon</option>
+ <option value="210">2.0 V</option>
+ <option value="211">2.0 V Coupe</option>
+ <option value="212">2.0 Van Wagon</option>
+ <option value="213">2.0 Wagon</option>
+ <option value="214">2.0 X MPV</option>
+ <option value="215">2.1 315 CDI</option>
+ <option value="216">2.1 515 CDI</option>
+ <option value="217">2.1 CDI SUV</option>
+ <option value="218">2.1 CDI Van Wagon</option>
+ <option value="219">2.1 d 4matic SUV</option>
+ <option value="220">2.1 d Matic SUV</option>
+ <option value="221">2.1 d Van Wagon</option>
+ <option value="222">2.3 MPV</option>
+ <option value="223">2.3 SUV</option>
+ <option value="224">2.4 ASG Van</option>
+ <option value="225">2.4 Premium</option>
+ <option value="226">2.4 G </option>
+ <option value="227">2.4 G MPV</option>
+ <option value="228">2.4 G Pick</option>
+ <option value="229">2.4 G SUV </option>
+ <option value="230">2.4 GR Sport</option>
+ <option value="231">2.4 MPV</option>
+ <option value="232">2.4 Prestige</option>
+ <option value="233">2.4 Dakar</option>
+ <option value="234">2.4 S MPV</option>
+ <option value="235">2.4 SC MPV</option>
+ <option value="236">2.4 SUV</option>
+ <option value="237">2.4 TRD SUV</option>
+ <option value="238">2.4 V</option>
+ <option value="239">2.4 V Sedan</option>
+ <option value="240">2.4 V Van</option>
+ <option value="241">2.4 Van Wagon</option>
+ <option value="242">2.4 VRZ SUV</option>
+ <option value="243">2.4 VTi-L</option>
+ <option value="244">2.4 Wagon</option>
+ <option value="245">2.4 Z Van</option>
+ <option value="246">2.4 ZG Van</option>
+ <option value="247">2.5 Dakar</option>
+ <option value="248">2.5 E Pick</option>
+ <option value="249">2.5 E Sedan</option>
+ <option value="250">2.5 Elite SUV</option>
+ <option value="251">2.5 Exceed</option>
+ <option value="252">2.5 G</option>
+ <option value="253">2.5 G Elite Wagon</option>
+ <option value="254">2.5 G Limited</option>
+ <option value="255">2.5 G S</option>
+ <option value="256">2.5 G SUV</option>
+ <option value="257">2.5 G TRD</option>
+ <option value="258">2.5 G Van</option>
+ <option value="259">2.5 G Wagon</option>
+ <option value="260">2.5 Grand Touring SUV</option>
+ <option value="261">2.5 GT SUV</option>
+ <option value="262">2.5 HD-X</option>
+ <option value="263">2.5 Highway Star</option>
+ <option value="264">2.5 MPV</option>
+ <option value="265">2.5 NP300 VL</option>
+ <option value="266">2.5 Pick-up</option>
+ <option value="267">2.5 Sedan</option>
+ <option value="268">2.5 SKYACTIV</option>
+ <option value="269">2.5 SKYACTIV-G SUV</option>
+ <option value="270">2.5 SKYACTIV-G Wagon</option>
+ <option value="271">2.5 Standard Van</option>
+ <option value="272">2.5 Super Exceed</option>
+ <option value="273">2.5 SUV</option>
+ <option value="274">2.5 V</option>
+ <option value="275">2.5 V Sedan</option>
+ <option value="276">2.5 VL Wagon</option>
+ <option value="277">2.5 Wagon</option>
+ <option value="278">2.7 G Luxury</option>
+ <option value="279">2.7 SUV</option>
+ <option value="280">2.7 TX</option>
+ <option value="281">2.7 TX SUV</option>>
+ <option value="282">2.8 GR Sport</option>
+ <option value="283">2.8 Premio Van</option>
+ <option value="284">2.8 Premium Wagon</option>
+ <option value="285">2.9 Wagon</option>
+ <option value="286">3.0 300G SUV</option>
+ <option value="287">3.0 4MATIC AMG Line Wagon</option>
+ <option value="288">3.0 4MATIC SUV</option>
+ <option value="289">3.0 4MATIC Wagon</option>
+ <option value="290">3.0 AMG</option>
+ <option value="291">3.0 AMG Convertible</option>
+ <option value="292">3.0 AMG Coupe</option>
+ <option value="293">3.0 AMG Dynamic Coupe</option>
+ <option value="294">3.0 AMG Line Wagon</option>
+ <option value="295">3.0 AMG Sedan</option>
+ <option value="296">3.0 AMG SUV</option>
+ <option value="297">3.0 AMG Wagon</option>
+ <option value="298">3.0 Avantgarde AMG Sedan</option>
+ <option value="299">3.0 Avantgarde Sedan</option>
+ <option value="300">3.0 AWD</option>
+ <option value="301">3.0 CDI SUV</option>
+ <option value="302">3.0 Exclusive 4matic SUV</option>
+ <option value="303">3.0 Exclusive Sedan</option>
+ <option value="304">3.0 M Sport</option>
+ <option value="305">3.0 Panamera S</option>
+ <option value="306">3.0 Royal Saloon</option>
+ <option value="307">3.0 S package 3Tv</option>
+ <option value="308">3.0 Sedan</option>
+ <option value="309">3.0 Solitaire Sedan</option>
+ <option value="310">3.0 SUV</option>
+ <option value="311">3.0 Wagon</option>
+ <option value="312">3.3 SUV</option>
+ <option value="313">3.3 GR</option>
+ <option value="314">3.3 VX</option>
+ <option value="315">3.5 4MATIC SUV</option>
+ <option value="316">3.5 AMG Coupe</option>
+ <option value="317">3.5 CGI Sedan</option>
+ <option value="318">3.5 Hybrid Sedan</option>
+ <option value="319">3.5 Sedan</option>
+ <option value="320">3.5 SUV</option>
+ <option value="321">3.7 SUV</option>
+ <option value="322">4.0 Coupe</option>
+ <option value="323">4.0 SUV</option>
+ <option value="324">4.2 VX</option>
+ <option value="325">4.5 Full</option>
+ <option value="326">4.5 VX</option>
+ <option value="327">5.4 SUV</option>
+ <option value="328">5.5 Coupe</option>
+ <option value="329">7.5 FM 517 HL</option>
+ <option value="330">7.5 FM 517 HS</option>
+ </select>
+ <br>
+ <label for="Jarak"></label>
+ <input type="text" id="Jarak" name="Jarak"
+ placeholder="Jarak">
+ <br>
+ <label for="Tahun"></label>
+ <input type="text" id="Tahun" name="Tahun" placeholder="Tahun">
+ <br>
+ <label for="Gearshift"></label>
+ <select id="Gearshift" name="Gearshift">
+ <option value="0">Gearshift</option>
+ <option value="1">Manual</option>
+ <option value="2">Otomatis</option>
+ </select>
+ <br>
+ <label for="BBM"></label>
+ <select id="BBM" name="BBM">
+ <option value="0">BBM</option>
+ <option value="1">Pertamax</option>
+ <option value="2">Solar</option>
+ </select>
+ <br>
+ <button type="submit" class="btn btn-primary btn-block btnlarge">Prediksi</button>
+ </form>
+ <br>
+ <br>
+ {{ prediction_text }}
+</div>
+</body>
+</html>
